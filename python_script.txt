@@ -1,0 +1,30 @@
+import pexpect
+import time
+import MySQLdb
+
+DEVICE = "98:4F:EE:0F:A6:D7"
+
+db = MySQLdb.connect("localhost", "laptop", "autismi", "sensorvalue")
+cursor = db.cursor()
+time.sleep(1)
+
+print("kaynnistetaan gatttool")
+child = pexpect.spawn("gatttool -I")
+
+print("yhdistetaan laitteeseen: ")
+print(DEVICE)
+child.sendline("connect {0}".format(DEVICE))
+child.expect("Connection successful", timeout=5)
+print("Yhdistys onnistui")
+
+while 1:
+	child.sendline("char-read-hnd 0x000b")
+	child.expect("Characteristic value/descriptor: ", timeout=10)
+	child.expect("\r\n", timeout=10)
+	lampotila = child.before[0:2]
+	lampotila = int(lampotila,16)
+	print("Lampotila: ", lampotila)
+	sql = "INSERT INTO sensoriarvot(lampotila) VALUES (%f)" %(lampotila)
+	cursor.execute(sql)
+	db.commit()
+	time.sleep(5)
