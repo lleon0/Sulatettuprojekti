@@ -1,0 +1,39 @@
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <link href="Muotoilu.css" rel="stylesheet" type="text/css"/>
+    </head>
+
+    <body>
+        <div>
+            <div id="Etusivu">
+                DB status: ok
+
+                <h1>Raspberry Apache2 server</h1>
+                <form action="Etusivu.php" method="POST"> 
+                    <label>Ryhma 6: Vuohtoniemi Marko, Kinnunen Tuomo ja Niku Lauri<br></label>
+                </form>
+                
+                                
+                <div id="Taulu">
+                    <TABLE border="1" style="border-spacing: 0px;">
+                        <tr><th>Kellonaika</th><th>Paivamaara</th><th>Lampotila</th><th>Kosteus</th></tr>
+                        <td>
+                        09:28:13                        </td>
+                        <td>
+                            2017-02-10                        </td>
+
+                        <td>
+                            12                        </td>
+
+                        <td>
+                            13                        </td>
+
+                    </TABLE>
+                </div>
+            </div>   
+    </body>
+</html>
+</div>
